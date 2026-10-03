@@ -706,7 +706,7 @@
         <h2 id="work-h">Demo builds you can read</h2>
       </div>
       <p class="section-intro">
-        This is a new practice, so instead of testimonials there are two public demo repositories.
+        This is a new practice, so instead of testimonials there are three public demo repositories.
         Each one is a working, documented build in the same style you&rsquo;d receive &mdash; read the code
         and judge for yourself.
       </p>
@@ -797,6 +797,46 @@ resp = client.messages.create(
             </div>
           </div>
         </article>
+
+        <!-- Demo repo C -->
+        <article class="repo" aria-labelledby="repo-c-h">
+          <div class="repo-head">
+            <h3 id="repo-c-h"><span class="slash">demo/</span>northstar-support-bot</h3>
+            <a class="repo-link" href="https://github.com/kelsonworks/northstar-support-bot" rel="noopener">view source on GitHub &rarr;</a>
+          </div>
+          <p>
+            A single-file support chatbot that answers from its own knowledge base without calling a
+            model at all &mdash; deterministic, zero dependencies, no API keys, runs from one HTML file.
+            It shows the other end of the craft: when a support widget should be predictable and free
+            to run, rather than clever and metered.
+          </p>
+          <div class="flow" aria-label="Pipeline: knowledge base, keyword and intent matching, answer, fallback to a human">
+            <span class="node">knowledge base</span><span class="arr">&rarr;</span>
+            <span class="node hot">keyword + intent match</span><span class="arr">&rarr;</span>
+            <span class="node">answer</span><span class="arr">/</span>
+            <span class="node">fallback to human</span>
+          </div>
+          <div class="repo-cols">
+            <div>
+              <h4>What the repo shows</h4>
+              <ul>
+                <li>One HTML file: the widget, the knowledge base, and the matcher</li>
+                <li>No dependencies, no build step, no API keys</li>
+                <li>Deterministic matching &mdash; the same question gets the same answer</li>
+                <li>Fallback path routes unanswerable questions to a human</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Why deterministic can be the right tool</h4>
+              <ul>
+                <li>Zero per-message cost &mdash; there is no model bill to run it</li>
+                <li>No hallucination surface: answers come only from the knowledge base</li>
+                <li>Auditable: every answer maps to an entry you wrote</li>
+                <li>No secrets to leak &mdash; nothing to exfiltrate</li>
+              </ul>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -851,7 +891,7 @@ resp = client.messages.create(
     <span>&copy; 2026</span>
     <p class="honest">
       Independent, one-person practice. New, so: no client logos, no testimonials, no numbers I can&rsquo;t
-      back up. The two demo repositories above are the portfolio &mdash; read the code, then decide.
+      back up. The three demo repositories above are the portfolio &mdash; read the code, then decide.
     </p>
   </div>
 </footer>
