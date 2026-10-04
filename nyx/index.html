@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nyx — night shift</title>
+<meta name="description" content="nyx · 24 · night-shift bookseller at rook & lantern. tarot by candlelight, vinyl at 1am. AI-generated fictional character (AI, 18+).">
+<style>
+  :root{
+    --bg:#0a0910;
+    --panel:#131021;
+    --panel-2:#181429;
+    --line:#2a2340;
+    --violet:#8b7bff;
+    --violet-soft:#a99bfa;
+    --amber:#f0b56a;
+    --text:#e9e5f4;
+    --muted:#8a849c;
+    --faint:#5d5770;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:
+      radial-gradient(1200px 700px at 50% -10%, #1a1330 0%, rgba(26,19,48,0) 60%),
+      radial-gradient(900px 600px at 85% 110%, #16102a 0%, rgba(22,16,42,0) 55%),
+      var(--bg);
+    color:var(--text);
+    font-family: Georgia, 'Palatino Linotype', 'Times New Roman', serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:48px 20px 40px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{width:100%;max-width:520px;text-align:center;}
+  .fade{opacity:0;transform:translateY(10px);transition:opacity .8s ease, transform .8s ease;}
+  .fade.in{opacity:1;transform:none;}
+
+  .art{margin:0 auto 8px;display:block;}
+
+  h1{
+    font-weight:normal;
+    font-size:52px;
+    letter-spacing:.28em;
+    text-indent:.28em;
+    color:var(--text);
+    margin-bottom:6px;
+  }
+  .sub{
+    font-size:13px;
+    letter-spacing:.32em;
+    text-indent:.32em;
+    text-transform:lowercase;
+    color:var(--muted);
+  }
+  .pill{
+    display:inline-block;
+    margin:18px auto 6px;
+    padding:5px 14px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-family:'Courier New', monospace;
+    font-size:10.5px;
+    letter-spacing:.14em;
+    color:var(--faint);
+  }
+  .greeting{
+    margin:20px auto 26px;
+    max-width:400px;
+    font-style:italic;
+    font-size:16px;
+    line-height:1.5;
+    color:var(--violet-soft);
+  }
+  .bio{
+    max-width:420px;
+    margin:0 auto 30px;
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--muted);
+  }
+  .bio em{color:var(--text);font-style:italic;}
+
+  .tiers{display:flex;flex-direction:column;gap:14px;margin-bottom:30px;}
+  .tier{
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px;
+    text-align:left;
+    position:relative;
+  }
+  .tier.alt{border-color:#3a2f5e;box-shadow:0 0 0 1px #3a2f5e, 0 8px 30px rgba(139,123,255,.08);}
+  .tier .flag{
+    position:absolute;top:-9px;left:20px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    padding:2px 10px;border-radius:999px;
+    font-family:'Courier New', monospace;font-size:9.5px;letter-spacing:.16em;
+    color:var(--amber);
+  }
+  .tier h2{
+    font-weight:normal;font-size:17px;letter-spacing:.24em;text-transform:lowercase;
+    color:var(--text);margin-bottom:2px;
+  }
+  .price{font-size:22px;color:var(--violet-soft);margin-bottom:8px;}
+  .price span{font-size:12px;color:var(--faint);letter-spacing:.06em;}
+  .tier ul{list-style:none;margin:10px 0 16px;}
+  .tier li{
+    font-size:13.5px;color:var(--muted);line-height:1.7;padding-left:16px;position:relative;
+  }
+  .tier li::before{content:"☾";position:absolute;left:0;color:var(--faint);font-size:11px;top:2px;}
+  .btn{
+    display:block;text-align:center;text-decoration:none;
+    padding:11px 0;border-radius:9px;
+    border:1px solid var(--line);
+    color:var(--text);
+    font-family:'Courier New', monospace;
+    font-size:12px;letter-spacing:.22em;
+    transition:border-color .25s ease, color .25s ease;
+  }
+  .btn:hover{border-color:var(--violet);color:var(--violet-soft);}
+  .tier.alt .btn{background:var(--violet);border-color:var(--violet);color:#100d1e;}
+  .tier.alt .btn:hover{background:var(--violet-soft);color:#100d1e;}
+
+  .dms{
+    margin:0 auto 30px;max-width:420px;
+    font-family:'Courier New', monospace;
+    font-size:11.5px;letter-spacing:.1em;line-height:2;
+    color:var(--faint);
+  }
+  .dms b{color:var(--muted);font-weight:normal;}
+
+  .foot{border-top:1px solid var(--line);padding-top:16px;}
+  .foot .note{
+    font-size:11px;line-height:1.8;color:var(--faint);max-width:420px;margin:0 auto 10px;
+  }
+  .foot a{color:var(--violet-soft);text-decoration:none;}
+  .foot a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- decorative vignette: crescent moon, candle, book stack (no face art needed here) -->
+  <svg class="art" width="300" height="110" viewBox="0 0 320 120" fill="none" role="img" aria-label="crescent moon over a candle and a stack of books">
+    <circle cx="212" cy="62" r="26" fill="#f0b56a" opacity="0.05"/>
+    <circle cx="212" cy="62" r="40" fill="#f0b56a" opacity="0.03"/>
+    <rect x="209" y="52" width="7" height="26" rx="2" fill="#8b7bff"/>
+    <path d="M212.5 40c-2 5-2.5 8 1.5 13 3.5 4.4 2.6 6.5-1.5 8-2.2-5.6-2.3-15.6 0-21z" fill="#f0b56a"/>
+    <g fill="#e9e5f4" opacity="0.85">
+      <path d="M60 18a26 26 0 1 0 26 26 22 22 0 0 1-26-26z" fill="#e9e5f4"/>
+    </g>
+    <circle cx="66" cy="14" r="26" fill="#0a0910" transform="translate(14,-8)"/>
+    <circle cx="120" cy="20" r="1.4" fill="#8a849c"/>
+    <circle cx="150" cy="34" r="1" fill="#8a849c"/>
+    <circle cx="104" cy="44" r="1" fill="#5d5770"/>
+    <rect x="150" y="86" width="86" height="7" rx="2" fill="#2a2340"/>
+    <rect x="157" y="78" width="72" height="7" rx="2" fill="#3a2f5e"/>
+    <rect x="164" y="70" width="58" height="7" rx="2" fill="#8b7bff" opacity="0.55"/>
+  </svg>
+
+  <h1>nyx</h1>
+  <p class="sub">night shift · rook &amp; lantern</p>
+
+  <div class="pill">AI-generated fictional character · AI, 18+ · dms on fanvue</div>
+
+  <p class="greeting fade" id="greeting">&nbsp;</p>
+
+  <p class="bio fade">
+    i'm nyx. twenty-four. i shelve poetry after dark, read tarot by candlelight, and keep one black cat
+    who pays in silence. <em>the feed gets the highlights. the night shift gets the rest.</em>
+  </p>
+
+  <!-- OPERATOR: both fanvue.com hrefs are placeholders until the Fanvue account passes ID verification -->
+  <div class="tiers">
+    <div class="tier fade">
+      <h2>the night shift</h2>
+      <div class="price">$7.99<span> / month</span></div>
+      <ul>
+        <li>daily posts after close</li>
+        <li>weekly dm drop</li>
+        <li>the feed the algorithm doesn't see</li>
+      </ul>
+      <a class="btn" href="https://fanvue.com/nyx-nightshift">join the night shift</a>
+    </div>
+
+    <div class="tier alt fade">
+      <span class="flag">the full shift</span>
+      <h2>after hours</h2>
+      <div class="price">$14.99<span> / month</span></div>
+      <ul>
+        <li>everything in the night shift</li>
+        <li>priority dms</li>
+        <li>one custom set a month</li>
+      </ul>
+      <a class="btn" href="https://fanvue.com/nyx-nightshift">stay after hours</a>
+    </div>
+  </div>
+
+  <p class="dms fade">
+    in the dms&ensp;·&ensp;<b>polaroids from $5</b>&ensp;·&ensp;<b>voice notes from $3</b>&ensp;·&ensp;“night at the shop” sets from $12
+  </p>
+
+  <div class="foot fade">
+    <p class="note">
+      fictional character. adult content gated and age-verified by the platform. dms here only —
+      no meetups, no exceptions.
+    </p>
+    <p class="note">
+      business &amp; press:
+      <!-- OPERATOR: placeholder Gmail — create it or name a real one and the footer is swapped in one commit -->
+      <a href="mailto:nyx.nightshift@gmail.com">nyx.nightshift@gmail.com</a>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  (function(){
+    var h = new Date().getHours();
+    var g = document.getElementById('greeting');
+    if (h >= 21 || h < 5) {
+      g.textContent = 'the night shift is on. the rest is none of the algorithm\u2019s business.';
+    } else if (h < 12) {
+      g.textContent = 'the shop opens at nine. the night shift starts at nine-oh-one.';
+    } else {
+      g.textContent = 'the shop is open. the night shift starts at nine-oh-one.';
+    }
+
+    var els = document.querySelectorAll('.fade');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, {threshold:.15});
+      els.forEach(function(el){ io.observe(el); });
+    } else {
+      els.forEach(function(el){ el.classList.add('in'); });
+    }
+  })();
+</script>
+</body>
+</html>
